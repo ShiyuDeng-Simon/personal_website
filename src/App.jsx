@@ -4,7 +4,11 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
+import KeyboardNavigation from './components/KeyboardNavigation'
+import ScrollToTop from './components/ScrollToTop'
+import DarkModeToggle from './components/DarkModeToggle'
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,6 +35,66 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  }, []);
+  
+  // Initialize smooth scroll behavior
+  useEffect(() => {
+    // Implement smooth scrolling for anchor links
+    const smoothScroll = (e) => {
+      const target = e.target;
+      if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
+        const id = target.getAttribute('href');
+        const element = document.querySelector(id);
+        
+        if (element) {
+          e.preventDefault();
+          
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Update URL without page reload
+          if (history.pushState) {
+            history.pushState(null, null, id);
+          }
+        }
+      }
+    };
+    
+    document.body.addEventListener('click', smoothScroll);
+    
+    return () => {
+      document.body.removeEventListener('click', smoothScroll);
+    };
+  }, []);
+  
+  // Initialize scroll reveal animations
+  useEffect(() => {
+    // Setup section reveal animations
+    const revealSections = () => {
+      const sections = document.querySelectorAll('section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-reveal');
+            // Once the animation has played, we can unobserve
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      
+      sections.forEach(section => {
+        // Add the class for styling
+        section.classList.add('section-animate');
+        // Start observing
+        observer.observe(section);
+      });
+    };
+    
+    // Small timeout to ensure DOM is ready
+    setTimeout(revealSections, 100);
   }, []);
   
   // Custom cursor animation
@@ -150,13 +214,17 @@ function App() {
 
   return (
     <>
+      <KeyboardNavigation />
       <Navbar scrolled={scrolled} />
       <main>
         <Hero />
         <About />
         <Projects />
+        <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
+      <DarkModeToggle />
       {/* Custom Cursor Elements */}
       <div ref={cursorDotRef} className="cursor-dot"></div>
       <div ref={cursorOutlineRef} className="cursor-outline"></div>

@@ -1,0 +1,100 @@
+.scroll-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  z-index: 990;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top.hide {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.scroll-to-top i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+}
+
+.scroll-to-top:hover i {
+  transform: translateY(-3px);
+}
+
+.scroll-to-top:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.3);
+}
+
+/* Ripple effect */
+.scroll-to-top .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Dark theme compatibility */
+[data-theme="dark"] .scroll-to-top {
+  box-shadow: var(--shadow-xl);
+}
+
+@media (max-width: 992px) {
+  .scroll-to-top {
+    right: 25px;
+    bottom: 25px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    right: 20px;
+    bottom: 70px; /* Move up to avoid conflicts with mobile navigation */
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    right: 15px;
+    bottom: 60px;
+    width: 40px;
+    height: 40px;
+  }
+}

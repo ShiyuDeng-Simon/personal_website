@@ -1,6 +1,6 @@
 .about {
   position: relative;
-  background-color: #f9f9ff;
+  background-color: var(--off-white);
   padding: var(--section-padding);
   overflow: hidden;
 }
@@ -66,10 +66,18 @@
   box-shadow: var(--shadow-lg);
   z-index: 2;
   transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 5px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
 .about-content.visible .about-image {
   transform: translateY(0) rotate(0deg);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .about-image-backdrop {
@@ -324,6 +332,54 @@
   
   .about-numbers {
     justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .about-image-container {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+  
+  .about-details {
+    text-align: center;
+  }
+  
+  .about-cta {
+    justify-content: center;
+  }
+  
+  .skills-heading {
+    padding-left: 0;
+  }
+  
+  .skills-heading::before {
+    display: none;
+  }
+  
+  .about-numbers {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .number-item {
+    min-width: 140px;
+    flex: 0 0 calc(50% - 1rem);
+  }
+  
+  .skill-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .skill-name {
+    margin-bottom: 0.25rem;
   }
 }
 

@@ -40,13 +40,13 @@ const About = () => {
 
   // Skills with proficiency levels
   const skills = [
-    { name: 'HTML', proficiency: 90 },
-    { name: 'CSS', proficiency: 85 },
-    { name: 'JavaScript', proficiency: 80 },
-    { name: 'React', proficiency: 75 },
-    { name: 'Node.js', proficiency: 70 },
-    { name: 'UI/UX Design', proficiency: 80 },
-    { name: 'Responsive Design', proficiency: 85 },
+    { name: 'React/React Native', proficiency: 90 },
+    { name: 'JavaScript/TypeScript', proficiency: 90 },
+    { name: 'Python', proficiency: 85 },
+    { name: 'Java', proficiency: 80 },
+    { name: 'C/C++', proficiency: 75 },
+    { name: 'HTML/CSS', proficiency: 85 },
+    { name: 'SQL/NoSQL', proficiency: 80 },
   ];
 
   return (
@@ -61,40 +61,38 @@ const About = () => {
         <div className={`about-content ${isVisible ? 'visible' : ''}`} ref={aboutRef}>
           <div className="about-image-container">
             <div className="about-image">
-              {/* Replace with actual image */}
               <div className="about-placeholder">
                 <i className="fas fa-user-circle"></i>
               </div>
             </div>
             <div className="about-image-backdrop"></div>
             <div className="experience-badge">
-              <span className="years">5+</span>
-              <span className="text">Years<br/>Experience</span>
+              <span className="years">UBC</span>
+              <span className="text">Computer<br/>Science</span>
             </div>
           </div>
           
           <div className="about-details">
             <div className="about-text">
-              <h3 className="about-heading">Hello, I'm <span className="highlight">Your Name</span></h3>
+              <h3 className="about-heading">Hello, I'm <span className="highlight">Shiyu (Simon) Deng</span></h3>
               <p className="about-lead">
-                I'm a passionate web developer and designer based in [Your Location]. 
-                With a strong focus on creating clean, user-friendly experiences, 
-                I combine technical skills with creative problem-solving.
+                I'm a Computer Science student at the University of British Columbia with a passion for 
+                software engineering and web development.
               </p>
               <p>
-                My journey in web development began [brief background story]. Since then,
-                I've worked on a variety of projects that have allowed me to refine my skills in
-                frontend and backend technologies. I'm particularly interested in
-                [your specific interests or specialties].
+                Currently working as a Software Engineer at Datavisor, I've been developing and implementing 
+                end-to-end automation test suites for new features. My experience includes building an internal AI coding tool, 
+                automating performance testing of web features, and improving system performance.
               </p>
               <p>
-                When I'm not coding, you can find me [your hobbies or interests].
-                I believe that these diverse interests contribute to my creative approach to problem-solving.
+                I'm particularly interested in web development, mobile app design, and machine learning applications. 
+                Through hackathons and personal projects, I've developed solutions ranging from healthcare applications to 
+                real estate platforms.
               </p>
             </div>
             
             <div className="skills-container">
-              <h4 className="skills-heading">My Skills</h4>
+              <h4 className="skills-heading">Technical Skills</h4>
               <div className="skill-bars">
                 {skills.map((skill, index) => (
                   <div className="skill-item" key={index} style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
@@ -118,22 +116,22 @@ const About = () => {
             
             <div className="about-numbers">
               <div className="number-item">
-                <span className="number">50+</span>
-                <span className="number-text">Projects<br/>Completed</span>
+                <span className="number">3+</span>
+                <span className="number-text">Years of<br/>Experience</span>
               </div>
               <div className="number-item">
-                <span className="number">30+</span>
-                <span className="number-text">Happy<br/>Clients</span>
+                <span className="number">4+</span>
+                <span className="number-text">Major<br/>Projects</span>
               </div>
               <div className="number-item">
-                <span className="number">100+</span>
-                <span className="number-text">Coffee<br/>Consumed</span>
+                <span className="number">3</span>
+                <span className="number-text">Hackathon<br/>Awards</span>
               </div>
             </div>
             
             <div className="about-cta">
               <a href="#projects" className="btn">View My Projects</a>
-              <a href="#" className="btn btn-outline">Download Resume</a>
+              <a href="https://github.com/ShiyuDeng-Simon" target="_blank" rel="noopener noreferrer" className="btn btn-outline">GitHub Profile</a>
             </div>
           </div>
         </div>

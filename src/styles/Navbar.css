@@ -24,6 +24,7 @@
   align-items: center;
 }
 
+/* Improve the gradient text effect for better visibility */
 .navbar-logo {
   font-size: 1.5rem;
   font-weight: 700;
@@ -33,6 +34,8 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: 0 0 1px rgba(var(--primary-color-rgb), 0.3);
+  padding-right: 1px; /* Fix clipping issue */
 }
 
 .navbar-logo:hover {
@@ -44,6 +47,8 @@
   display: flex;
   list-style: none;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links li {
@@ -55,6 +60,11 @@
   position: relative;
   padding-bottom: 5px;
   color: var(--text-color);
+}
+
+/* Make navigation links more visible in dark mode */
+[data-theme="dark"] .navbar-links a {
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .navbar-links a::after {

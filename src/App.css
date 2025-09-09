@@ -9,6 +9,19 @@ main {
   flex: 1;
 }
 
+/* Section reveal animations */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.section-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Animation classes */
 .fade-in {
   opacity: 0;
@@ -36,6 +49,28 @@ main {
     transform: translateY(0);
   }
 }
+
+/* Stagger animations for multiple elements */
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* Animation modifiers */
+.delay-100 { animation-delay: 0.1s !important; }
+.delay-200 { animation-delay: 0.2s !important; }
+.delay-300 { animation-delay: 0.3s !important; }
+.delay-400 { animation-delay: 0.4s !important; }
+.delay-500 { animation-delay: 0.5s !important; }
+
+.duration-500 { animation-duration: 0.5s !important; }
+.duration-800 { animation-duration: 0.8s !important; }
+.duration-1000 { animation-duration: 1s !important; }
+.duration-1500 { animation-duration: 1.5s !important; }
 
 /* Responsive styles */
 @media (max-width: 768px) {

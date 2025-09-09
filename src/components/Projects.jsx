@@ -39,13 +39,20 @@ const ProjectCard = ({ project }) => {
           <img src={project.image} alt={project.title} />
         ) : (
           <div className="project-placeholder">
-            <i className={`fas fa-${project.category === 'design' ? 'paint-brush' : 'code'}`}></i>
+            <i className={`fas fa-${project.icon || 'code'}`}></i>
           </div>
         )}
         <div className="project-overlay">
-          <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
-            <i className="fas fa-external-link-alt"></i>
-          </a>
+          {project.github && (
+            <a href={project.github} className="project-link github-link" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-github"></i>
+            </a>
+          )}
+          {project.link && (
+            <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
+              <i className="fas fa-external-link-alt"></i>
+            </a>
+          )}
         </div>
       </div>
       <div className="project-info">
@@ -66,60 +73,70 @@ const Projects = () => {
   const [filter, setFilter] = useState('all');
   const [visible, setVisible] = useState(false);
   
-  // Example project data - replace with your actual projects
+  // Projects data from resume
   const projects = [
     {
       id: 1,
-      title: 'Modern Web Application',
-      description: 'A responsive web application built with React and Node.js with real-time features and database integration.',
+      title: 'Healthcare Communication App',
+      description: 'Built a healthcare app leveraging Local LLM to assist patients with pre-visit preparation, real-time session transcription, and post-session summaries for improved doctor-patient communication.',
       image: '',
-      category: 'web',
-      tags: ['React', 'Node.js', 'MongoDB'],
+      icon: 'heartbeat',
+      category: 'hackathon',
+      tags: ['React Native', 'Local LLM', 'Healthcare'],
+      github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 2,
-      title: 'E-commerce Platform',
-      description: 'Full-featured online store with product catalog, shopping cart, and secure payment processing.',
+      title: 'Food Waste Reduction App',
+      description: 'Developed a React Native mobile app designed to streamline meal preparation and reduce food waste by analyzing fridge contents with Google Vision and suggesting recipes using Google Gemini API.',
       image: '',
-      category: 'web',
-      tags: ['JavaScript', 'Express', 'PayPal API'],
+      icon: 'utensils',
+      category: 'hackathon',
+      tags: ['React Native', 'Google Vision', 'Google Gemini API'],
+      github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 3,
-      title: 'Mobile App Design',
-      description: 'UI/UX design for a fitness tracking mobile application with custom illustrations and animations.',
+      title: 'Relocation Platform',
+      description: 'Conceptualized and developed "Richomove", a website designed to simplify intern relocations by providing a safe platform for users to swap homes during intern period.',
       image: '',
-      category: 'design',
-      tags: ['UI/UX', 'Figma', 'Prototyping'],
+      icon: 'home',
+      category: 'hackathon',
+      tags: ['JavaScript', 'Docker', 'React'],
+      github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 4,
-      title: 'Portfolio Website',
-      description: 'Custom-designed portfolio website with modern aesthetics and smooth interactions.',
+      title: 'Project Collaboration App',
+      description: 'Developed a full-stack website enabling task creation, tracking, and management within projects, offering team member invitations, commenting, poll/vote, and meetup scheduling for effective teamwork.',
       image: '',
+      icon: 'tasks',
       category: 'web',
-      tags: ['HTML/CSS', 'JavaScript', 'Responsive Design'],
+      tags: ['JavaScript', 'Docker', 'React', 'SQL', 'Express'],
+      github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 5,
-      title: 'Brand Identity',
-      description: 'Complete brand identity including logo design, color palette, typography, and guidelines.',
+      title: 'AI Coding Tool',
+      description: 'Built an internal AI coding tool, leveraging an MCP server with custom workflows and function calls, and adopted across multiple teams to accelerate automation test development.',
       image: '',
-      category: 'design',
-      tags: ['Branding', 'Logo Design', 'Style Guide'],
+      icon: 'robot',
+      category: 'work',
+      tags: ['Python', 'AI', 'Automation', 'MCP Server'],
       link: '#'
     },
     {
       id: 6,
-      title: 'API Development',
-      description: 'RESTful API development for a content management system with comprehensive documentation.',
+      title: 'Performance Testing Framework',
+      description: 'Automated performance testing of web features by developing Lua scripts and using wrk for validation, stability, and scalability while monitoring resource usage in Grafana.',
       image: '',
-      category: 'backend',
-      tags: ['API', 'Documentation', 'Backend'],
+      icon: 'chart-line',
+      category: 'work',
+      tags: ['Lua', 'Performance Testing', 'Grafana', 'Automation'],
       link: '#'
     }
   ];
@@ -157,7 +174,7 @@ const Projects = () => {
       
       <div className="container">
         <h2 className="section-title">My Projects</h2>
-        <p className="section-subtitle">Here are some of my recent works</p>
+        <p className="section-subtitle">Showcasing my work in software development</p>
         
         <div className="project-filters">
           <button 
@@ -167,22 +184,22 @@ const Projects = () => {
             All
           </button>
           <button 
+            className={`filter-btn ${filter === 'hackathon' ? 'active' : ''}`}
+            onClick={() => setFilter('hackathon')}
+          >
+            Hackathons
+          </button>
+          <button 
+            className={`filter-btn ${filter === 'work' ? 'active' : ''}`}
+            onClick={() => setFilter('work')}
+          >
+            Work Projects
+          </button>
+          <button 
             className={`filter-btn ${filter === 'web' ? 'active' : ''}`}
             onClick={() => setFilter('web')}
           >
-            Web Development
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'design' ? 'active' : ''}`}
-            onClick={() => setFilter('design')}
-          >
-            Design
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'backend' ? 'active' : ''}`}
-            onClick={() => setFilter('backend')}
-          >
-            Backend
+            Web Apps
           </button>
         </div>
         
