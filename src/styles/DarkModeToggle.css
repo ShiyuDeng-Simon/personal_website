@@ -1,0 +1,103 @@
+.theme-toggle {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 999;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  position: relative;
+  padding: 0;
+}
+
+.toggle-track {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: var(--primary-color);
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(67, 97, 238, 0.2);
+}
+
+.toggle-button.dark .toggle-track {
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 10px rgba(114, 9, 183, 0.2);
+}
+
+.toggle-thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--light-color);
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button.dark .toggle-thumb {
+  left: calc(100% - 28px);
+}
+
+.toggle-icon {
+  color: var(--primary-color);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.toggle-button.dark .toggle-icon {
+  color: var(--secondary-color);
+}
+
+/* Animation for toggle */
+.toggle-button:hover .toggle-track {
+  opacity: 0.9;
+}
+
+.toggle-button:hover .toggle-thumb {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+.toggle-button:focus-visible {
+  box-shadow: 0 0 0 2px var(--primary-color);
+  border-radius: 50px;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 80px;
+    right: 15px;
+  }
+  
+  .toggle-button {
+    width: 50px;
+    height: 26px;
+  }
+  
+  .toggle-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .toggle-button.dark .toggle-thumb {
+    left: calc(100% - 24px);
+  }
+  
+  .toggle-icon {
+    font-size: 12px;
+  }
+}

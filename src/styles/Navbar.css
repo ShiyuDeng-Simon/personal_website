@@ -10,9 +10,12 @@
 }
 
 .navbar.scrolled {
-  background-color: var(--background-color);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  box-shadow: 0 2px 10px var(--shadow-color);
   padding: 0.7rem 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navbar-container {
@@ -26,15 +29,21 @@
   font-weight: 700;
   color: var(--primary-color);
   transition: all 0.3s ease;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .navbar-logo:hover {
   transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .navbar-links {
   display: flex;
   list-style: none;
+  align-items: center;
 }
 
 .navbar-links li {
@@ -45,6 +54,7 @@
   font-weight: 500;
   position: relative;
   padding-bottom: 5px;
+  color: var(--text-color);
 }
 
 .navbar-links a::after {
@@ -62,6 +72,25 @@
   width: 100%;
 }
 
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-theme-toggle {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-theme-toggle.desktop {
+  display: flex;
+}
+
+.navbar-theme-toggle li {
+  display: none;
+}
+
 .navbar-toggle {
   display: none;
   cursor: pointer;
@@ -72,7 +101,7 @@
   width: 25px;
   height: 3px;
   margin: 5px auto;
-  background-color: var(--dark-color);
+  background-color: var(--text-color);
   transition: all 0.3s ease-in-out;
 }
 
@@ -81,18 +110,25 @@
     display: block;
   }
   
+  .navbar-theme-toggle.desktop {
+    display: none;
+  }
+  
   .navbar-menu {
     position: fixed;
     right: -100%;
     top: 70px;
     width: 70%;
-    background-color: var(--background-color);
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-background);
+    box-shadow: -5px 0 10px var(--shadow-color);
     padding: 2rem;
     border-radius: 10px 0 0 10px;
     transition: 0.5s ease;
     z-index: 99;
     height: calc(100vh - 70px);
+    border-left: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   
   .navbar-menu.active {
@@ -107,6 +143,15 @@
   .navbar-links li {
     margin: 1.5rem 0;
     width: 100%;
+  }
+
+  .navbar-theme-toggle.desktop {
+    display: none;
+  }
+
+  .navbar-links .navbar-theme-toggle {
+    display: flex;
+    margin-top: 1.5rem;
   }
   
   .bar.active:nth-child(1) {

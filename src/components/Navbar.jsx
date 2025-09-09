@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
+import DarkModeToggle from './DarkModeToggle';
 
 const Navbar = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,13 +33,21 @@ const Navbar = ({ scrolled }) => {
             <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
             <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
             <li><a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a></li>
+            <li className="navbar-theme-toggle">
+              <DarkModeToggle />
+            </li>
           </ul>
         </div>
 
-        <div className="navbar-toggle" onClick={toggleMenu}>
-          <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
-          <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
-          <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
+        <div className="navbar-actions">
+          <div className="navbar-theme-toggle desktop">
+            <DarkModeToggle />
+          </div>
+          <div className="navbar-toggle" onClick={toggleMenu}>
+            <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
+            <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
+            <span className={`bar ${menuOpen ? 'active' : ''}`}></span>
+          </div>
         </div>
       </div>
     </nav>

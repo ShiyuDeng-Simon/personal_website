@@ -1,9 +1,70 @@
 import { useState, useEffect, useRef } from 'react';
 import '../styles/Projects.css';
 
+const ProjectCard = ({ project }) => {
+  const cardRef = useRef(null);
+  
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
+  
+  const handleMouseLeave = () => {
+    if (cardRef.current) {
+      cardRef.current.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    }
+  };
+  
+  return (
+    <div 
+      className="project-card" 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="project-image">
+        {project.image ? (
+          <img src={project.image} alt={project.title} />
+        ) : (
+          <div className="project-placeholder">
+            <i className={`fas fa-${project.category === 'design' ? 'paint-brush' : 'code'}`}></i>
+          </div>
+        )}
+        <div className="project-overlay">
+          <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
+            <i className="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+      <div className="project-info">
+        <h3 className="project-title">{project.title}</h3>
+        <p className="project-description">{project.description}</p>
+        <div className="project-tags">
+          {project.tags.map((tag, index) => (
+            <span key={index} className="project-tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Projects = () => {
   const projectsRef = useRef(null);
   const [filter, setFilter] = useState('all');
+  const [visible, setVisible] = useState(false);
   
   // Example project data - replace with your actual projects
   const projects = [
@@ -72,7 +133,7 @@ const Projects = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          setVisible(true);
         }
       });
     }, { threshold: 0.1 });
@@ -90,8 +151,13 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects">
+      {/* Decorative elements */}
+      <div className="shape shape-circle shape-1"></div>
+      <div className="shape shape-blob shape-2"></div>
+      
       <div className="container">
         <h2 className="section-title">My Projects</h2>
+        <p className="section-subtitle">Here are some of my recent works</p>
         
         <div className="project-filters">
           <button 
@@ -120,33 +186,9 @@ const Projects = () => {
           </button>
         </div>
         
-        <div className="projects-grid" ref={projectsRef}>
-          {filteredProjects.map(project => (
-            <div className="project-card" key={project.id}>
-              <div className="project-image">
-                {project.image ? (
-                  <img src={project.image} alt={project.title} />
-                ) : (
-                  <div className="project-placeholder">
-                    <i className={`fas fa-${project.category === 'design' ? 'paint-brush' : 'code'}`}></i>
-                  </div>
-                )}
-                <div className="project-overlay">
-                  <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
-                    <i className="fas fa-external-link-alt"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="project-info">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.map((tag, index) => (
-                    <span key={index} className="project-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className={`projects-grid ${visible ? 'visible' : ''}`} ref={projectsRef}>
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>

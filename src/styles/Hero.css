@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.05) 0%, transparent 30%);
 }
 
 .hero-overlay {
@@ -14,8 +17,61 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(58, 134, 255, 0.05) 0%, rgba(131, 56, 236, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(67, 97, 238, 0.03) 0%, rgba(114, 9, 183, 0.03) 100%);
   z-index: -1;
+}
+
+/* Decorative shapes */
+.shape {
+  position: absolute;
+  z-index: -1;
+}
+
+.shape-1 {
+  top: -50px;
+  right: 10%;
+  width: 200px;
+  height: 200px;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  border-radius: var(--radius-circle);
+  filter: blur(50px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-2 {
+  bottom: 10%;
+  left: 5%;
+  width: 350px;
+  height: 350px;
+  background: var(--gradient-secondary);
+  opacity: 0.08;
+  border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  filter: blur(40px);
+  animation: blob-animation 20s infinite alternate, float 15s ease-in-out infinite;
+}
+
+.shape-3 {
+  top: 60%;
+  right: 5%;
+  width: 150px;
+  height: 150px;
+  background: var(--gradient-accent);
+  opacity: 0.1;
+  border-radius: var(--radius-circle);
+  filter: blur(30px);
+  animation: float 10s ease-in-out infinite;
+}
+
+.shape-dots {
+  top: 20%;
+  left: 10%;
+  width: 180px;
+  height: 180px;
+  background-image: radial-gradient(var(--primary-color) 1px, transparent 1px);
+  background-size: 15px 15px;
+  opacity: 0.1;
+  animation: float 12s ease-in-out infinite;
 }
 
 .hero-container {
@@ -36,6 +92,8 @@
 
 .hero-content {
   flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
@@ -49,24 +107,77 @@
   font-weight: 500;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
 }
 
 .hero-name {
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 800;
-  color: var(--dark-color);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   line-height: 1.1;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 0.6s;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--gray-dark);
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 0.9s;
 }
 
 .hero-tagline {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
-  color: var(--secondary-color);
+  color: var(--gray-medium);
+  max-width: 600px;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 1.2s;
 }
 
 .hero-cta {
   display: flex;
   gap: 1rem;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 1.5s;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 1.8s;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(67, 97, 238, 0.1);
+  border-radius: var(--radius-circle);
+  color: var(--primary-color);
+  transition: all var(--transition-medium);
+}
+
+.social-icon:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-5px);
 }
 
 .btn-outline {
@@ -85,49 +196,99 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .profile-img-container {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid var(--light-color);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  background: var(--background-color);
+  overflow: visible;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  50% {
-    transform: translateY(-20px);
-    box-shadow: 0 25px 25px rgba(0, 0, 0, 0.05);
-  }
-  100% {
-    transform: translateY(0px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+  animation: fadeIn 0.5s ease forwards, float 6s ease-in-out infinite;
+  opacity: 0;
+  animation-delay: 1.2s;
 }
 
 .profile-placeholder {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-lg);
+  background: var(--gradient-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f5f5f5;
-  color: var(--primary-color);
+  position: relative;
+  z-index: 2;
 }
 
 .profile-placeholder i {
   font-size: 8rem;
+  color: white;
+}
+
+/* Orbiting icons */
+.orbiting-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+}
+
+.icon-code {
+  color: var(--primary-color);
+  animation: orbit 12s linear infinite;
+}
+
+.icon-design {
+  color: var(--secondary-color);
+  animation: orbit 12s linear infinite;
+  animation-delay: -4s;
+}
+
+.icon-mobile {
+  color: var(--accent-color);
+  animation: orbit 12s linear infinite;
+  animation-delay: -8s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(160px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(160px) rotate(-360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .scroll-indicator {
@@ -195,24 +356,46 @@
   .hero-cta {
     justify-content: center;
   }
+
+  .hero-socials {
+    justify-content: center;
+  }
   
   .hero-title {
     align-items: center;
+  }
+
+  .hero-name {
+    font-size: 3rem;
   }
   
   .profile-img-container {
     width: 250px;
     height: 250px;
   }
+
+  .orbiting-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(140px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(140px) rotate(-360deg);
+    }
+  }
 }
 
 @media (max-width: 480px) {
   .hero-name {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
   
   .hero-tagline {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .hero-cta {
@@ -226,5 +409,19 @@
   
   .profile-placeholder i {
     font-size: 6rem;
+  }
+
+  .orbiting-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(115px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(115px) rotate(-360deg);
+    }
   }
 }
