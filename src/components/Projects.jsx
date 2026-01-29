@@ -3,33 +3,33 @@ import '../styles/Projects.css';
 
 const ProjectCard = ({ project }) => {
   const cardRef = useRef(null);
-  
+
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
-    
+
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = (y - centerY) / 10;
     const rotateY = (centerX - x) / 10;
-    
+
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
-  
+
   const handleMouseLeave = () => {
     if (cardRef.current) {
       cardRef.current.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     }
   };
-  
+
   return (
-    <div 
-      className="project-card" 
+    <div
+      className="project-card"
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -72,7 +72,7 @@ const Projects = () => {
   const projectsRef = useRef(null);
   const [filter, setFilter] = useState('all');
   const [visible, setVisible] = useState(false);
-  
+
   // Projects data from resume
   const projects = [
     {
@@ -100,7 +100,7 @@ const Projects = () => {
     {
       id: 3,
       title: 'Relocation Platform',
-      description: 'Conceptualized and developed "Richomove", a website designed to simplify intern relocations by providing a safe platform for users to swap homes during intern period.',
+      description: 'Conceptualized and developed "Echomove", a website designed to simplify intern relocations by providing a safe platform for users to swap homes during intern period.',
       image: '',
       icon: 'home',
       category: 'hackathon',
@@ -142,8 +142,8 @@ const Projects = () => {
   ];
 
   // Filter projects based on selected category
-  const filteredProjects = filter === 'all' 
-    ? projects 
+  const filteredProjects = filter === 'all'
+    ? projects
     : projects.filter(project => project.category === filter);
 
   useEffect(() => {
@@ -154,11 +154,11 @@ const Projects = () => {
         }
       });
     }, { threshold: 0.1 });
-    
+
     if (projectsRef.current) {
       observer.observe(projectsRef.current);
     }
-    
+
     return () => {
       if (projectsRef.current) {
         observer.unobserve(projectsRef.current);
@@ -171,38 +171,38 @@ const Projects = () => {
       {/* Decorative elements */}
       <div className="shape shape-circle shape-1"></div>
       <div className="shape shape-blob shape-2"></div>
-      
+
       <div className="container">
         <h2 className="section-title">My Projects</h2>
         <p className="section-subtitle">Showcasing my work in software development</p>
-        
+
         <div className="project-filters">
-          <button 
+          <button
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
           >
             All
           </button>
-          <button 
+          <button
             className={`filter-btn ${filter === 'hackathon' ? 'active' : ''}`}
             onClick={() => setFilter('hackathon')}
           >
             Hackathons
           </button>
-          <button 
+          <button
             className={`filter-btn ${filter === 'work' ? 'active' : ''}`}
             onClick={() => setFilter('work')}
           >
             Work Projects
           </button>
-          <button 
+          <button
             className={`filter-btn ${filter === 'web' ? 'active' : ''}`}
             onClick={() => setFilter('web')}
           >
             Web Apps
           </button>
         </div>
-        
+
         <div className={`projects-grid ${visible ? 'visible' : ''}`} ref={projectsRef}>
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} />
