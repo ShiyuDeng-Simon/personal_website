@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import '../styles/Projects.css';
+import meddiConnectImg from '../assets/MeddiConnect.png';
+import chefItUpImg from '../assets/ChefItUp.png';
+import echoHomeImg from '../assets/EchoHome.png';
+import uniCollabImg from '../assets/UniCollab.png';
+import datavisorLogo from '../assets/datavisor_logo.png';
 
 const ProjectCard = ({ project }) => {
   const cardRef = useRef(null);
@@ -54,6 +59,11 @@ const ProjectCard = ({ project }) => {
             </a>
           )}
         </div>
+        {project.award && (
+          <div className="project-award">
+            {project.award}
+          </div>
+        )}
       </div>
       <div className="project-info">
         <h3 className="project-title">{project.title}</h3>
@@ -77,45 +87,48 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Healthcare Communication App',
+      title: 'MeddiConnect',
       description: 'Built a healthcare app leveraging Local LLM to assist patients with pre-visit preparation, real-time session transcription, and post-session summaries for improved doctor-patient communication.',
-      image: '',
+      image: meddiConnectImg,
       icon: 'heartbeat',
       category: 'hackathon',
-      tags: ['React Native', 'Local LLM', 'Healthcare'],
+      award: 'Award Winning',
+      tags: ['Local LLM', 'JavaScript', 'React', 'Healthcare'],
       github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 2,
-      title: 'Food Waste Reduction App',
+      title: 'Chef-it-Up',
       description: 'Developed a React Native mobile app designed to streamline meal preparation and reduce food waste by analyzing fridge contents with Google Vision and suggesting recipes using Google Gemini API.',
-      image: '',
+      image: chefItUpImg,
       icon: 'utensils',
       category: 'hackathon',
-      tags: ['React Native', 'Google Vision', 'Google Gemini API'],
+      award: 'Award Winning',
+      tags: ['React Native', 'Google Vision', 'Google Gemini API', 'Prompt Engineering'],
       github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
     {
       id: 3,
-      title: 'Relocation Platform',
-      description: 'Conceptualized and developed "Echomove", a website designed to simplify intern relocations by providing a safe platform for users to swap homes during intern period.',
-      image: '',
+      title: 'EchoHomes',
+      description: 'Conceptualized and developed "EchoHomes", a website designed to simplify intern relocations by providing a safe platform for users to swap homes during intern period.',
+      image: echoHomeImg,
       icon: 'home',
       category: 'hackathon',
-      tags: ['JavaScript', 'Docker', 'React'],
+      award: 'Hackathon Winner',
+      tags: ['JavaScript', 'Docker', 'React', 'Vite', 'Firebase'],
       github: 'https://github.com/ShiyuDeng-Simon',
-      link: '#'
+      link: 'https://devpost.com/software/echo-homes'
     },
     {
       id: 4,
       title: 'Project Collaboration App',
       description: 'Developed a full-stack website enabling task creation, tracking, and management within projects, offering team member invitations, commenting, poll/vote, and meetup scheduling for effective teamwork.',
-      image: '',
+      image: uniCollabImg,
       icon: 'tasks',
       category: 'web',
-      tags: ['JavaScript', 'Docker', 'React', 'SQL', 'Express'],
+      tags: ['JavaScript', 'Docker', 'React', 'PostgreSQL', 'Express', 'Node.js', 'Google OAuth'],
       github: 'https://github.com/ShiyuDeng-Simon',
       link: '#'
     },
@@ -123,20 +136,20 @@ const Projects = () => {
       id: 5,
       title: 'AI Coding Tool',
       description: 'Built an internal AI coding tool, leveraging an MCP server with custom workflows and function calls, and adopted across multiple teams to accelerate automation test development.',
-      image: '',
+      image: datavisorLogo,
       icon: 'robot',
       category: 'work',
-      tags: ['Python', 'AI', 'Automation', 'MCP Server'],
+      tags: ['Python', 'AI', 'Automation', 'MCP Server', 'FastMCP'],
       link: '#'
     },
     {
       id: 6,
       title: 'Performance Testing Framework',
-      description: 'Automated performance testing of web features by developing Lua scripts and using wrk for validation, stability, and scalability while monitoring resource usage in Grafana.',
-      image: '',
+      description: 'Automated performance testing by developing Lua scripts and using wrk for validation, stability, and scalability while monitoring resource usage in Grafana.',
+      image: datavisorLogo,
       icon: 'chart-line',
       category: 'work',
-      tags: ['Lua', 'Performance Testing', 'Grafana', 'Automation'],
+      tags: ['wrk', 'Performance Testing', 'Grafana', 'Automation'],
       link: '#'
     }
   ];
